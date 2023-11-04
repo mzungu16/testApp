@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -36,6 +37,38 @@ android {
 }
 
 dependencies {
+
+    //ViewModel
+    val viewModelVersion = "2.6.2"
+
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$viewModelVersion")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion")
+
+    //Coroutines
+    val coroutinesVersion = "1.7.1"
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+
+    //Retrofit
+    val retrofitVersion = "2.9.0"
+    val okhttpVersion = "4.11.0"
+    val okhttpVersionInterceptor = "4.9.3"
+
+    implementation( "com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation ("com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion")
+    implementation ("com.squareup.okhttp3:okhttp:$okhttpVersion")
+    implementation ("com.squareup.okhttp3:logging-interceptor:$okhttpVersionInterceptor")
+
+
+    //Room
+    val roomVersion = "2.6.0"
+
+    implementation ("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor ("androidx.room:room-compiler:$roomVersion")
+    implementation ("androidx.room:room-ktx:$roomVersion")
+    ksp ("androidx.room:room-compiler:$roomVersion")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
