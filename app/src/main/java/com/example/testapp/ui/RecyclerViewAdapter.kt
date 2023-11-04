@@ -41,7 +41,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.RecyclerVie
             foodImg.load(listOfFood[position].foodImg)
             foodName.text = listOfFood[position].foodName
             foodDes.text = listOfFood[position].foodDes
-            foodPrice.text = listOfFood[position].foodPrice
+            foodPrice.text = "от ${listOfFood[position].foodPrice}"
         }
     }
 }

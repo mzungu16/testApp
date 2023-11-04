@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     private fun addChips(catInfos: List<CatInfo>, size: Int) {
         binding.run {
             for (category in catInfos) {
-                val chip = Chip(this@MainActivity).apply {
+                val chip = (layoutInflater.inflate(R.layout.chip,chipGroup,false) as Chip).apply {
                     id = ViewCompat.generateViewId()
                     text = category.category
                 }

@@ -25,8 +25,7 @@ class MainViewModel(private val usecase: MainUsecase) : ViewModel() {
     fun getFood() {
         viewModelScope.launch {
             usecase.getFoodFromRepo().collect {
-                Log.d("TAGUS",(it as DataState<List<FoodItem>>).toString())
-                _foodLiveData.postValue(it)
+                _foodLiveData.postValue(it as DataState<List<FoodItem>>)
             }
         }
     }
@@ -34,8 +33,7 @@ class MainViewModel(private val usecase: MainUsecase) : ViewModel() {
     fun getCategory(){
         viewModelScope.launch{
             usecase.getCategoryFromRepo().collect{
-                Log.d("TAGUS",(it as DataState<List<CatInfo>>).toString())
-                _categoryLiveData.postValue(it)
+                _categoryLiveData.postValue(it as DataState<List<CatInfo>>)
             }
         }
     }

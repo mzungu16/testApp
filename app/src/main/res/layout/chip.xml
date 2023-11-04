@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.App.Chip"
+    android:layout_width="wrap_content"
+    app:chipStrokeWidth="@dimen/stroke_width_chip"
+    android:elevation="@dimen/elevation_chip"
+    android:layout_height="wrap_content"
+    tools:text="@string/tample_text_chip" />
