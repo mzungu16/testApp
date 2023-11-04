@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">testApp</string>
+    <string name="retry_string">Retry</string>
+    <string name="city_name">Москва</string>
+    <string name="image_button_des">expand</string>
+    <string name="tample_text_chip">asdasdadsas</string>
+
 </resources>
