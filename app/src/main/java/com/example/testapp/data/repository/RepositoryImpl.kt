@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.flow
 class RepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
 ):Repository {
-    override suspend fun getFoodFromRemote(query: String) = flow {
-        emit(remoteDataSource.getNewMeals(query))
+    override suspend fun getFoodFromRemote() = flow {
+        emit(remoteDataSource.getNewMeals())
     }
 }

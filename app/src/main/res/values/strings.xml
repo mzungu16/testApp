@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">testApp</string>
+    <string name="retry_string">Retry</string>
 </resources>
