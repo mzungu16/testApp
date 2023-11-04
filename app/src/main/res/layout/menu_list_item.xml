@@ -40,7 +40,6 @@
                 android:layout_marginTop="8dp"
                 android:lines="3"
                 android:ellipsize="end"
-                android:maxLength="450"
                 tools:text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />

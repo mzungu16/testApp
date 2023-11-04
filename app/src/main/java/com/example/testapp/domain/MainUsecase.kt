@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainUsecase {
     suspend fun getFoodFromRepo(): Flow<DataState<*>>
+    suspend fun getCategoryFromRepo(): Flow<DataState<*>>
 }

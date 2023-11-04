@@ -68,17 +68,30 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 android:gravity="bottom"
                 app:menu="@menu/toolbar_menu"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_expand">
+                app:layout_collapseMode="pin">
 
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Москва"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:layout_alignParentStart="true"/>
 
+                <ImageButton
+                    android:id="@+id/toolbar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_expand"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_alignParentEnd="true"/>
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -87,17 +100,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="5dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.google.android.material.chip.ChipGroup
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.chip.Chip
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
+                app:singleLine="true"
+                app:singleSelection="true"
                 android:layout_height="wrap_content" />
+        </HorizontalScrollView>
 
-        </com.google.android.material.chip.ChipGroup>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/menu_recycler"

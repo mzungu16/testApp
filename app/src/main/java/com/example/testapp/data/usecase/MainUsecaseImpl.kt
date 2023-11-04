@@ -11,4 +11,8 @@ class MainUsecaseImpl(val repository: Repository) : MainUsecase {
     override suspend fun getFoodFromRepo(): Flow<DataState<*>> {
         return repository.getFoodFromRemote()
     }
+
+    override suspend fun getCategoryFromRepo(): Flow<DataState<*>> {
+        return repository.getCategoryFromRemote()
+    }
 }
