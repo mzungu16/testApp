@@ -16,7 +16,7 @@ class RemoteDataSourceImpl(
 ): RemoteDataSource {
     override suspend fun getNewMeals(query:String): List<FoodItem>{
         var result:List<MealsInfo> = emptyList()
-            api.getFoodMenu(query).enqueue(object: Callback<FoodDTO>{
+            api.getFoodMenu().enqueue(object: Callback<FoodDTO>{
                 override fun onResponse(call: Call<FoodDTO>, response: Response<FoodDTO>) {
                     if(response.isSuccessful){
                         result = response.let {

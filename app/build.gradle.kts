@@ -1,17 +1,18 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    id("kotlin-kapt")
+//    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.example.testapp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.testapp"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -34,21 +35,40 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
+    //Picasso
+    implementation ("com.squareup.picasso:picasso:2.8")
+
+    //Coil
+    val coilVersion = "2.4.0"
+    implementation("io.coil-kt:coil:$coilVersion")
+
+    //Koin
+    val koinVersion = "3.2.0"
+
+    implementation("io.insert-koin:koin-android:$koinVersion")
+
+    //ViewBinding
+    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6")
 
     //ViewModel
     val viewModelVersion = "2.6.2"
 
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$viewModelVersion")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$viewModelVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion")
 
     //Coroutines
     val coroutinesVersion = "1.7.1"
 
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     //Retrofit
     val retrofitVersion = "2.9.0"
@@ -67,12 +87,12 @@ dependencies {
 
     implementation ("androidx.room:room-runtime:$roomVersion")
     annotationProcessor ("androidx.room:room-compiler:$roomVersion")
-    implementation ("androidx.room:room-ktx:$roomVersion")
-    ksp ("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
