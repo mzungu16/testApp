@@ -1,36 +1,42 @@
 package com.example.testapp.data.datasource.remote
 
-import com.example.testapp.data.retrofit.FoodDTO
+import com.example.testapp.data.retrofit.CatInfo
 import com.example.testapp.data.retrofit.MealApi
-import com.example.testapp.data.retrofit.MealsInfo
 import com.example.testapp.domain.Mapper
 import com.example.testapp.domain.RemoteDataSource
+import com.example.testapp.utils.DataState
 import com.example.testapp.utils.FoodItem
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class RemoteDataSourceImpl(
     private val api: MealApi,
     private val mapper: Mapper
-): RemoteDataSource {
-    override suspend fun getNewMeals(query:String): List<FoodItem>{
-        var result:List<MealsInfo> = emptyList()
-            api.getFoodMenu(query).enqueue(object: Callback<FoodDTO>{
-                override fun onResponse(call: Call<FoodDTO>, response: Response<FoodDTO>) {
-                    if(response.isSuccessful){
-                        result = response.let {
-                            it.body()?.meals ?: emptyList()
-                        }
-                    }
-                }
+) : RemoteDataSource, BaseRemote() {
 
-                override fun onFailure(call: Call<FoodDTO>, t: Throwable) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-        return mapper.mapRemoteToLocal(result)
+    private suspend fun getFoodFromServer() = apiCall { api.getFoodMenu() }
+    private suspend fun getCategoryFromServer() = apiCall { api.getCategories() }
+    override suspend fun getNewMeals(): DataState<List<FoodItem>> {
+        val data = getFoodFromServer()
+        return if (data is DataState.Success) {
+            DataState.Success(
+                mapper.mapRemoteToLocal(
+                    data.data?.meals ?: emptyList()
+                )
+            )
+        } else {
+            DataState.Error(data.message.toString())
+        }
     }
+
+    override suspend fun getCategories(): DataState<List<CatInfo>> {
+        val data = getCategoryFromServer()
+        return if (data is DataState.Success) {
+            DataState.Success(
+                data.data?.categoryList ?: emptyList()
+            )
+        } else {
+            DataState.Error(data.message.toString())
+        }
+    }
+
 }
 
